@@ -202,6 +202,16 @@ ActiveRecord::Schema.define(version: 0) do
     t.string  "available",  limit: 1,  null: false
   end
 
+  create_table "options", primary_key: "option_id", force: :cascade do |t|
+    t.string  "body",        limit: 20, null: false
+    t.integer "question_id", limit: 4
+  end
+
+  create_table "questions", primary_key: "q_id", force: :cascade do |t|
+    t.string "body",    limit: 30, null: false
+    t.string "relevTo", limit: 0
+  end
+
   create_table "services", primary_key: "service_id", force: :cascade do |t|
     t.string  "name",        limit: 30, null: false
     t.string  "phoneNo",     limit: 15
@@ -261,18 +271,19 @@ ActiveRecord::Schema.define(version: 0) do
   end
 
   create_table "users", primary_key: "user_id", force: :cascade do |t|
-    t.integer "age",          limit: 4,  null: false
-    t.string  "gender",       limit: 1,  null: false
-    t.string  "location",     limit: 40, null: false
-    t.string  "escape",       limit: 1,  null: false
-    t.string  "withChildren", limit: 1,  null: false
-    t.string  "couple",       limit: 1,  null: false
-    t.string  "mentEmotDiff", limit: 1,  null: false
-    t.string  "convict",      limit: 1,  null: false
-    t.string  "disabled",     limit: 1,  null: false
-    t.string  "military",     limit: 1,  null: false
-    t.string  "asylum",       limit: 1,  null: false
-    t.string  "pets",         limit: 1,  null: false
+    t.integer "age",          limit: 4,   null: false
+    t.string  "gender",       limit: 1,   null: false
+    t.integer "location_id",  limit: 4,   null: false
+    t.string  "escape",       limit: 1,   null: false
+    t.string  "withChildren", limit: 1,   null: false
+    t.string  "couple",       limit: 1,   null: false
+    t.string  "mentEmotDiff", limit: 1,   null: false
+    t.string  "convict",      limit: 1,   null: false
+    t.string  "disabled",     limit: 1,   null: false
+    t.string  "military",     limit: 1,   null: false
+    t.string  "asylum",       limit: 1,   null: false
+    t.string  "pets",         limit: 1,   null: false
+    t.string  "hashCode",     limit: 256, null: false
   end
 
   create_table "workHelp", id: false, force: :cascade do |t|
